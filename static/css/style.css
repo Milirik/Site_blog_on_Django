@@ -1,0 +1,50 @@
+nav{
+    margin: 3%;
+}
+
+main{
+     min-height: calc(100vh - 60px);
+     
+}
+
+a[class="nav-link"]{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+div[class="collapse navbar-collapse"]{
+    margin-left: 3%;
+}
+
+li[class="nav-item"]{
+    margin-right: 20px;
+}
+
+.foot{
+    text-align: center;
+}
+footer{
+  /*  background-color: #dcdcdc;*/
+    height: 60px;
+}
+
+.fq_form{
+    resize: none;
+}
+
+.date_pub{
+    font-size: 14px;
+    font-weight: 200;
+}
+
+a.name_post{
+    text-decoration:none;
+    color: black;
+}
+
+nav[aria-label="Page navigation example"]{
+    margin: auto;
+}
+a[class="page-link"]{
+    color: #3da2b7;
+}

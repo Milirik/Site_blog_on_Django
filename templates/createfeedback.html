@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+	{{ block.super }} - Thanks for your feedback!
+{% endblock %}
+
+{% block main %}
+
+	{% if flag %}
+		<div class="alert alert-success" role="alert">
+  			The feedback was sent. Thank you!
+		</div>
+	{% else %}
+	<div class="alert alert-danger" role="alert">
+		This is a danger alert—check it out!
+	</div>
+	{% endif %}
+{% endblock %}

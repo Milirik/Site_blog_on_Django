@@ -19,5 +19,9 @@ from .views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index)
+    path('', Index.as_view(), name='index_url'),
+    path('projects', projects_list, name='projects_list_url'),
+    path('articles', articles_list, name='articles_list_url'),
+    path('contacts', contacts, name='contacts_url'),
+    path('post_detail/<slug>', PostDetail.as_view(), name='post_detail_url')
 ]
