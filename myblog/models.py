@@ -11,6 +11,7 @@ class Post(models.Model):
 	slug = models.SlugField(max_length=150, blank=True, unique=True)
 	body = models.TextField(blank=True, db_index=True)
 	date_pub = models.DateTimeField(auto_now_add=True)
+	image = models.ImageField(upload_to='images/', blank=True)
 
 	def __str__(self):
 		return '{}'.format(self.title)

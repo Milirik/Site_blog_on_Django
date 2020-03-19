@@ -3,15 +3,17 @@ from django.views.generic import View
 from .models import Post, Feedback
 from .forms import FeedbackForm
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 class Index(View):
 	def get(self, request):
-		posts = Post.objects.all()
+		search_query = request.GET.get('search', '')
+		posts = Post.objects.filter(Q(title__icontains=search_query)|Q(body__icontains=search_query)) if search_query else Post.objects.all()
+
 		form = FeedbackForm()
 		paginator = Paginator(posts, 5)
 
 		page_number = request.GET.get('page', default=1)
-
 		page = paginator.get_page(page_number)
 		is_paginated = page.has_other_pages()
 		prev_url = '?page={}'.format(page.previous_page_number()) if page.has_previous() else ''
@@ -50,10 +52,13 @@ def articles_list(request):
 				'articles.html',
 				context={})
 
-def contacts(request):
-	return render(request,
+class Contacts(View):
+ 	def get(self, request):
+ 		form = FeedbackForm()
+ 		return render(request,
 				'contacts.html',
-				context={})
+				context={'form':form})
+
 
 class PostDetail(View):
 	def get(self, request, slug):
@@ -61,6 +66,7 @@ class PostDetail(View):
 		return render(request,
 					  'post_detail.html',
 					  context={'post':post})
+
 	def post(self, request, slug):
 		post = get_object_or_404(Post, slug__iexact=slug)
 		return render(request,

@@ -1,10 +1,10 @@
 nav{
     margin: 3%;
+    background-color: white;
 }
 
 main{
      min-height: calc(100vh - 60px);
-     
 }
 
 a[class="nav-link"]{
@@ -20,12 +20,9 @@ li[class="nav-item"]{
     margin-right: 20px;
 }
 
-.foot{
-    text-align: center;
-}
 footer{
-  /*  background-color: #dcdcdc;*/
-    height: 60px;
+    background-color: #dcdcdc;
+    height: 30px;
 }
 
 .fq_form{
@@ -40,11 +37,27 @@ footer{
 a.name_post{
     text-decoration:none;
     color: black;
+    transition: color 0.2s /*ease-out 0.25s*/;
+}
+a.name_post:hover{
+    color: #3da2b7;
 }
 
 nav[aria-label="Page navigation example"]{
     margin: auto;
 }
+
 a[class="page-link"]{
     color: #3da2b7;
+}
+
+img{
+    margin-bottom: 20px;
+    max-height: 300px;
+    max-width: 500px;
+}
+
+img.in{
+    max-height: 500px;
+    max-width: 100%;
 }

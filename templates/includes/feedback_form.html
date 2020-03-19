@@ -1,0 +1,12 @@
+<form action="{% url 'index_url' %}" method="post">
+	{% csrf_token %}
+
+	<h2>Feedback</h2>
+	<p>You can also ask me a question, specifying your contacts.</p>
+	{% for field in form %}
+		<div class="form-group">
+			{{ field }}
+		</div>
+	{% endfor %}
+	<button type="submit" class="btn btn-info">Send</button>
+</form>

@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body >
-	<nav class="navbar navbar-expand-xl navbar-light" style="background-color: white;">
+	<nav class="navbar navbar-expand-xl navbar-light">
 		<img src="{% static 'img/mk2.jpg' %}" height="100" width="100">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -33,8 +33,8 @@
 				</li>
 
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+			<form class="form-inline my-2 my-lg-0" action="{% url 'index_url' %}">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search">
 				<button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
 			</form>
 		</div>		
@@ -51,11 +51,18 @@
 								
 								<h4><a class="name_post" href="{% url 'post_detail_url' slug=post.slug%}">{{ post.title }}</a></h4>
 								<p class="date_pub">{{ post.date_pub }}</p>
-								<span>{{ post.body|truncatechars:150 }}</span>
-								{% if post.body|length > 150 %}
-									<a href="{% url 'post_detail_url' slug=post.slug%}">read more</a>
+
+								{% if post.image %}
+									<img src="{{ post.image.url }}"  >
 								{% endif %}
-								<div><a href="{% url 'post_detail_url' slug=post.slug%}" class="btn btn-info" style="margin-top: 20px">Open</a></div>
+
+								<div>
+									<span>{{ post.body|truncatechars:250 }}</span>
+									{% if post.body|length > 150 %}
+										<a href="{% url 'post_detail_url' slug=post.slug%}">read more</a>
+									{% endif %}
+								</div>
+<!-- 								<div><a href="{% url 'post_detail_url' slug=post.slug%}" class="btn btn-info" style="margin-top: 20px">Read more</a></div> -->
 								<hr>
 						
 					{% endfor %}
@@ -85,24 +92,12 @@
 					</div>
 					<hr>
 					<div>
-						<form action="{% url 'index_url' %}" method="post">
-							{% csrf_token %}
-
-							<h2>Feedback</h2>
-							<p>Here you can leave your feedback about my projects or articles. Also you can ask me a question, specifying your contacts.</p>
-							{% for field in form %}
-								<div class="form-group">
-								{{ field }}
-								</div>
-							{% endfor %}
-							<button type="submit" class="btn btn-info">Send</button>
-						</form>
+						{% include 'includes/feedback_form.html' %}
 					</div>
 					
 				</div>
 			</div>
 		</div>
-
 		{% endblock %}
 	</main>
 

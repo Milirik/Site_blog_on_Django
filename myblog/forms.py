@@ -8,6 +8,5 @@ class FeedbackForm(forms.ModelForm):
 		widgets = {
             'body':forms.Textarea(attrs={'class':'fq_form',
             							 'rows':"6",
-            							 'maxlength': '150'})
-
+            							 'maxlength': '200'})
         }
