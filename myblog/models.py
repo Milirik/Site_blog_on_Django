@@ -41,50 +41,26 @@ class Feedback(models.Model):
 
 
 class Project(models.Model):
-	name_project = models.CharField(max_length=150, db_index=True)
+	title = models.CharField(max_length=150, db_index=True)
 	slug = models.SlugField(max_length=150, blank=True)
-	date_pub = models.DateTimeField(auto_now_add=True)	
+	body = models.TextField(blank=True, db_index=True)
+	date_pub = models.DateTimeField(auto_now_add=True)
+	image1 = models.ImageField(upload_to='images/', blank=True)
+	image2 = models.ImageField(upload_to='images/', blank=True)	
+	image3 = models.ImageField(upload_to='images/', blank=True)		
 	 	 
+	def save(self, *args, **kwargs):
+		if not self.id:
+			self.slug = gen_slug(self.title)
+		super().save(*args, **kwargs)
 
 
+	def __str__(self):
+		return '{}'.format(self.title)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	class Meta:
+		ordering = ['-date_pub']
 		
 
 class Article(object):

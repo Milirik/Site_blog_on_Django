@@ -22,7 +22,7 @@ li[class="nav-item"]{
 
 footer{
     background-color: #dcdcdc;
-    height: 30px;
+    margin-top: 20px;
 }
 
 .fq_form{
@@ -53,7 +53,7 @@ a[class="page-link"]{
 
 img{
     margin-bottom: 20px;
-    max-height: 300px;
+    max-height: 250px;
     max-width: 500px;
 }
 

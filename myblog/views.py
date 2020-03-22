@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
-from .models import Post, Feedback
+from .models import *
 from .forms import FeedbackForm
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -42,10 +42,15 @@ class Index(View):
 					context={'flag':flag})
 
 
-def projects_list(request):
-	return render(request,
-				'projects.html',
-				context={})
+class ProjectsList(View):
+	def get(self, request):
+		projects_list = Project.objects.all()
+		return render(request,
+					'projects_list.html',
+					context={'projects_list':projects_list})
+
+	def post(self, request, slug):
+		pass
 
 def articles_list(request):
 	return render(request,
@@ -72,3 +77,10 @@ class PostDetail(View):
 		return render(request,
 					  'post_detail.html',
 					  context={'post':post})
+
+
+def project_detail(request, slug):
+	project = get_object_or_404(Project, slug__iexact=slug)
+	return render(request,
+				  'project_detail.html',
+				  context={'project':project})	

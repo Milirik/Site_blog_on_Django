@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}
+	{{ block.super }} - {{ project.title|truncatechars:15 }}
+{% endblock %}
+
+{% block main %}
+	<h2>{{ project.title }}</h2>
+	<p class="date_pub">{{ project.date_pub }}</p>
+	<div><span>{{ project.body|safe }}</span></div>	
+	<hr>
+
+	<!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
+			{% if project.image1 %}
+				<div class="carousel-item active">
+					<img class="d-block w-100" src="{{ project.image1.url }}" alt="First slide">
+				</div>
+			{% endif %}
+			{% if project.image2 %}
+				<div class="carousel-item">
+					<img class="d-block w-100" src="{{ project.image2.url }}" alt="Second slide">
+				</div>
+			{% endif %}
+			{% if project.image3 %}
+				<div class="carousel-item">
+					<img class="d-block w-100" src="{{ project.image3.url }}" alt="Third slide">
+				</div>
+			{% endif %}
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div> -->
+	<!-- <div class="container" >
+			<div class="row">
+				<div class="col-sm-6" >
+					{% if project.image1 %}
+						<img class="d-block w-100" src="{{ project.image1.url }}" alt="First slide">
+					{% endif %}
+				</div>
+				<div class="col-sm-6" >
+					{% if project.image2 %}
+						<img class="d-block w-100" src="{{ project.image2.url }}" alt="Second slide">
+					{% endif %}
+				</div>
+				<div class="col-sm-6" style="margin: 0 auto;" >
+					{% if project.image3 %}
+						<img class="d-block w-100" src="{{ project.image3.url }}" alt="Third slide">
+					{% endif %}
+				</div>	
+			</div>	
+	</div> -->
+	
+	{% if project.image1 %}
+		<img class="d-block" src="{{ project.image1.url }}" alt="First slide">
+	{% endif %}
+
+	{% if project.image2 %}
+		<img class="d-block" src="{{ project.image2.url }}" alt="First slide">
+	{% endif %}
+
+	{% if project.image3 %}
+		<img class="d-block" src="{{ project.image3.url }}" alt="First slide">
+	{% endif %}
+{% endblock %}

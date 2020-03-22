@@ -12,5 +12,5 @@
 		<img class="in" src="{{ post.image.url }}" >
 	{% endif %}
 
-	<div><span>{{ post.body|linebreaksbr }}</span></div>	
+	<div><span>{{ post.body|safe }}</span></div>	
 {% endblock %}

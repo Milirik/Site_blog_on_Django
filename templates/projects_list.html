@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	{{ block.super }} - Projects
+{% endblock %}
+
+{% block main %}
+	<div class="container">
+		<div class="row">
+
+
+			{% for project in projects_list %}
+				<div class="col-sm-4" >
+					<div class="card" style="width: 18rem;margin-bottom: 30px">
+						{% if project.image1 %}
+							<img class="card-img-top" src="{{ project.image1.url }}" alt="Card image cap">
+						{% endif %}
+						<div class="card-body">
+							<h5 class="card-title">{{ project.title }}</h5>
+							<span class="card-text">{{ project.body|truncatechars:120|safe }}</span>
+							{% if project.body|length > 120 %}
+								<a href="">read more</a>
+							{% endif %}</p>
+							<a href="{% url 'project_detail_url' slug=project.slug %} " class="btn btn-primary">Learn more</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
