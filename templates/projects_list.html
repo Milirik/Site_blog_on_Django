@@ -19,8 +19,8 @@
 							<h5 class="card-title">{{ project.title }}</h5>
 							<span class="card-text">{{ project.body|truncatechars:120|safe }}</span>
 							{% if project.body|length > 120 %}
-								<a href="">read more</a>
-							{% endif %}</p>
+								<a href="{% url 'project_detail_url' slug=project.slug %}">read more</a>
+							{% endif %}
 							<a href="{% url 'project_detail_url' slug=project.slug %} " class="btn btn-primary">Learn more</a>
 						</div>
 					</div>
