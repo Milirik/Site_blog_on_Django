@@ -5,5 +5,12 @@
 {% endblock %}
 
 {% block main %}
-	Empty
+	{% for article in articles_list %}
+		<h1>{{ article.title }}</h1>
+		<p class="date_pub">{{ article.date_pub }}</p>
+
+		<div>{{ article.body|truncatechars:300|safe }}</div>
+		<div><a href="{% url 'article_detail_url' slug=article.slug%}" class="btn btn-info" style="margin-top: 20px">Learn more</a></div>
+		<hr>
+	{% endfor %}
 {% endblock %}

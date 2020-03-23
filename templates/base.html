@@ -6,6 +6,7 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="shortcut icon" type="image/png" href="{% static "favicon.ico" %}">
 </head>
 <body >
 	<nav class="navbar navbar-expand-xl navbar-light">
@@ -40,11 +41,11 @@
 		</div>		
 	</nav>
 	
-	<main role="main" class="container">
+	<main role="main" class="container" >
 		{% block main %}
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-7" >
+				<div class="col-lg-6 col-md-6 offset-1" >
 					<h2>Posts</h2>
 					<hr>
 					{% for post in page_object.object_list %}
@@ -85,7 +86,7 @@
 					</nav>
 					{% endif %}
 				</div>
-				<div class="col-sm-4 offset-md-1" >
+				<div class="col-lg-4 col-md-4 offset-lg-1" >
 					<div>
 						<h2>About me</h2>
 						<span>My name is Kirill Mikheev. I'm a junior developer. Technology stack currently: Python (Django, Flask), C#, Mysql. This is my blog where I will talk about my news and projects. I hope you like it!</span>
@@ -101,8 +102,8 @@
 		{% endblock %}
 	</main>
 
-	<footer id="footer" class="footer navbar-fixed-bottom">
-		<div class="foot">
+	<footer id="footer" class="footer">
+		<div style="text-align: center;">
         	©2020
         </div>
     </footer>

@@ -63,6 +63,23 @@ class Project(models.Model):
 		ordering = ['-date_pub']
 		
 
-class Article(object):
- 	pass
+class Article(models.Model):
+	title = models.CharField(max_length=150, db_index=True)
+	slug = models.SlugField(max_length=150, blank=True)
+	body = models.TextField(blank=True, db_index=True)
+	date_pub = models.DateTimeField(auto_now_add=True)
+
+	def save(self, *args, **kwargs):
+		if not self.id:
+			self.slug = gen_slug(self.title)
+		super().save(*args, **kwargs)
+
+
+	def __str__(self):
+		return '{}'.format(self.title)
+
+
+	class Meta:
+		ordering = ['-date_pub']
+		
 

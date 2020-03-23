@@ -7,5 +7,6 @@ class NewAdmin(SummernoteModelAdmin):
 
 # Register your models here.
 admin.site.register(Post, NewAdmin)
+admin.site.register(Article, NewAdmin)
 admin.site.register(Feedback)
 admin.site.register(Project, NewAdmin)

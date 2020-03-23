@@ -4,6 +4,7 @@ from .models import *
 from .forms import FeedbackForm
 from django.core.paginator import Paginator
 from django.db.models import Q
+from .utils import *
 
 class Index(View):
 	def get(self, request):
@@ -42,21 +43,6 @@ class Index(View):
 					context={'flag':flag})
 
 
-class ProjectsList(View):
-	def get(self, request):
-		projects_list = Project.objects.all()
-		return render(request,
-					'projects_list.html',
-					context={'projects_list':projects_list})
-
-	def post(self, request, slug):
-		pass
-
-def articles_list(request):
-	return render(request,
-				'articles.html',
-				context={})
-
 class Contacts(View):
  	def get(self, request):
  		form = FeedbackForm()
@@ -65,22 +51,26 @@ class Contacts(View):
 				context={'form':form})
 
 
-class PostDetail(View):
-	def get(self, request, slug):
-		post = get_object_or_404(Post, slug__iexact=slug)
-		return render(request,
-					  'post_detail.html',
-					  context={'post':post})
-
-	def post(self, request, slug):
-		post = get_object_or_404(Post, slug__iexact=slug)
-		return render(request,
-					  'post_detail.html',
-					  context={'post':post})
+class ProjectsList(ListMixin, View):
+	model = Project
+	template = 'projects_list.html'
 
 
-def project_detail(request, slug):
-	project = get_object_or_404(Project, slug__iexact=slug)
-	return render(request,
-				  'project_detail.html',
-				  context={'project':project})	
+class ArticlesList(ListMixin, View):
+	model = Article
+	template = 'articles.html'
+
+
+class PostDetail(DetailMixin, View):
+	model = Post
+	template = 'post_detail.html'
+
+
+class ProjectDetail(DetailMixin, View):
+	model = Project
+	template = 'project_detail.html'
+
+
+class ArticleDetail(DetailMixin, View):
+	model = Article
+	template = 'article_detail.html'

@@ -4,7 +4,7 @@ nav{
 }
 
 main{
-     min-height: calc(100vh - 60px);
+     min-height: calc(100vh - 30px);
 }
 
 a[class="nav-link"]{
@@ -22,7 +22,6 @@ li[class="nav-item"]{
 
 footer{
     background-color: #dcdcdc;
-    margin-top: 20px;
 }
 
 .fq_form{

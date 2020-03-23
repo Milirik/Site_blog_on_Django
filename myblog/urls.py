@@ -22,10 +22,14 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Index.as_view(), name='index_url'),
+
     path('projects', ProjectsList.as_view(), name='projects_list_url'),
-    path('articles', articles_list, name='articles_list_url'),
+    path('articles', ArticlesList.as_view(), name='articles_list_url'),
     path('contacts', Contacts.as_view(), name='contacts_url'),
+
     path('post_detail/<slug>', PostDetail.as_view(), name='post_detail_url'),
-    path('project_detail/<slug>', project_detail, name='project_detail_url'), 
+    path('project_detail/<slug>', ProjectDetail.as_view(), name='project_detail_url'), 
+    path('article_detail/<slug>', ArticleDetail.as_view(), name='article_detail_url'), 
+
     path('summernote/', include('django_summernote.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
